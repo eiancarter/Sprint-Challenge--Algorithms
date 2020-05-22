@@ -96,13 +96,33 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
-
+        ## Given our limitations, I think a bubble sort type of algorithm would work best because it
+        ## swaps adjacent elements but it has a poor time complexity of n**2
+        ## it is also very simple to implement bubble sort using recursion
+        if not self.can_move_right(): ## this will check for base case of one item on list - robot can simply return
+            return
+            
+        self.swap_item() ## the robot starts with None, so we to give it an item to start with - it chooses the one right in front automatically
+        self.set_light_on() ## turn the light on to signal robot it sorting
+        while self.can_move_right(): ## while moving right is possible, move right and check that the light is still on
+            self.move_right()
+            self.light_is_on()
+        ## once robot has moved all the way down, 
+        while self.compare_item() is not None: ## while we are moving we compare the item next on the list as long as it has a value
+            if self.compare_item() is 1: ## if the robot is holding a bigger item, then 
+                self.swap_item() ## swap it with the next one to sort those to items properly
+            else:
+                self.move_left() ## otherwise, if robot it holding a smaller or equal value item, move back left and repeat
+        self.swap_item() ## now that we have lowest value all the way up front, 
+        self.move_right() ## we can swap None with the smallest item and recurse back through, using
+        self.set_light_off() ## None as a backstop to halt the comparison loop
+        self.sort() ## after it moves through and sorts, turn the light off and complete
+            
+        # example = [None, 4, 6, 1, 9]
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
-    # with `python robot_sort.py`
+    # with `python3 robot_sort.py`
 
     l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
 
