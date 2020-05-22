@@ -3,7 +3,7 @@
 ## Exercise I
 
 a) As the size of n increases, the time complexity 
-remains O(1) to complete each mathematical operation, but the time complexity scales at O(n**3). As the input grows, whether n is an integer or a matrix array (the instructions are unclear), it should take n-cubed time to run through all calculations in the loop. 
+remains O(1) to complete each mathematical operation, but the time complexity scales at O(n**3). As the input grows, whether n is an integer or a matrix array (the instructions are unclear), it should take n-cubed time to run through all calculations in the loop.
 
 
 b) Exponential. I am having the hard time reading this 
