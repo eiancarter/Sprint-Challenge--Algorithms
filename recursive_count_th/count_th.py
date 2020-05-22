@@ -8,8 +8,10 @@ from collections import Counter
 def count_th(word):
     if len(word) <= 1:
         return 0
-    elif word == 'th':
-        return 1
+    # elif word == 'th': ## this seems redundant
+    #     return 1
+    if word[0:2] == 'th':
+        return 1 + count_th(word[2 - 1:])
     else:
-        return 1 + count_th(word[word.find('th') + 2:])
+        return count_th(word[2 -1:])
 
