@@ -96,6 +96,9 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
+        ## Given our limitations, I think a bubble sort type of algorithm would work best because it
+        ## swaps adjacent elements but it has a poor time complexity of n**2
+        ## it is also very simple to implement bubble sort using recursion
         if not self.can_move_right(): ## this will check for base case of one item on list - robot can simply return
             return
             
@@ -104,17 +107,18 @@ class SortingRobot:
         while self.can_move_right(): ## while moving right is possible, move right and check that the light is still on
             self.move_right()
             self.light_is_on()
-        while self.compare_item() is not None: ## while we are moving we compare the item next on the list
+        ## once robot has moved all the way down, 
+        while self.compare_item() is not None: ## while we are moving we compare the item next on the list as long as it has a value
             if self.compare_item() is 1: ## if the robot is holding a bigger item, then 
-                self.swap_item() ## swap it with the smaller one to sort those to items properly
+                self.swap_item() ## swap it with the next one to sort those to items properly
             else:
                 self.move_left() ## otherwise, if robot it holding a smaller or equal value item, move back left and repeat
-        self.swap_item() 
-        self.move_right()
-        self.set_light_off()
-        self.sort()
+        self.swap_item() ## now that we have lowest value all the way up front, 
+        self.move_right() ## we can swap None with the smallest item and recurse back through, using
+        self.set_light_off() ## None as a backstop to halt the comparison loop
+        self.sort() ## after it moves through and sorts, turn the light off and complete
             
-
+        # example = [None, 4, 6, 1, 9]
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
